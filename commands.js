@@ -38,6 +38,10 @@ client.on('message', async message => {
                     const channel = message.mentions.channels.first();
                     if(!channel) return message.channel.send(embed.setDescription(`Nie podano kanału do utworzenia zaproszenia.`));
                     if(!args[2]) return message.channel.send('Nie podałeś linku do utworzenia')
+                    if(args[2].startsWith("http")) {
+                        message.reply('Podałeś __link__ zamiast **nazwy twojego zaproszenia**! Rozpocznij procedurę tworzenia linku od początku!')
+                        return
+                    };
                     const slink = string.sanitize(`/${args[2]}`);
                     const salt_link = string.sanitize(`/${args[2]}/`);
                     const link = `/${slink}`;
@@ -45,7 +49,7 @@ client.on('message', async message => {
                     const invite = await channel.createInvite({
                         maxAge: 0
                     });
-                    const sql1 = `SELECT guild_id FROM links WHERE router="${link}"" OR alt_router="${alt_link}"`;
+                    const sql1 = `SELECT guild_id FROM links WHERE router="${link}" OR alt_router="${alt_link}"`;
 
                     con.query(sql1, async (err, result) => {
 
@@ -242,6 +246,7 @@ Jeżeli twój serwer nie posiada Premium nie zobaczysz zmian na swojej stronie.`
             .addField('Ostrzeżenie', `Pamiętaj, aby nie dodawać do linku **spacji, "--", ".", "@"** i innych znaków specjalnych gdyż zostanę one usunięte!`)
             .addField('Tutorial', `Nie wiesz jak stworzyć swoje zaproszenie? Wejdź na naszą stronę pomocy! https://help.invite.ovh/`)
             .addField('Podoba ci się nasz bot?', `Oddaj na niego swój głos! Głosy możesz dawać co 12 godzin! https://top.gg/bot/666628389309775873/vote`)
+            .addField('OpenSource', `invite.ovh od 4 maja jest projektem opensource obczaj nasz kod już teraz! https://github.com/inviteovh/inviteovh`)
             .setFooter(`Tworząc zaproszenie akceptujesz regulamin serwisu. Regulamin znajdziesz pod ${prefix}regulamin`)
             return message.channel.send(embed)
 
@@ -273,7 +278,8 @@ Jeżeli twój serwer nie posiada Premium nie zobaczysz zmian na swojej stronie.`
             .addFields(
                 {name: 'Ustawienia linku', value: `${prefix}setup, ${prefix}setup invite, ${prefix}setup opis, ${prefix}setup kolor, ${prefix}setup bg-color`},
                 {name: `Ogólne`, value: `${prefix}link, ${prefix}help, ${prefix}invite`},
-                {name: 'Aktualizacje', value: `${prefix}update`}
+                {name: 'Aktualizacje', value: `${prefix}update`},
+                {name: 'SourceCode', value: `invite.ovh od 4 maja jest projektem opensource obczaj nasz kod już teraz! https://github.com/inviteovh/inviteovh`}
             )
             
         )
