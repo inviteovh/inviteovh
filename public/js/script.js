@@ -1,6 +1,5 @@
 var things = ['lvlup', 'sparfy', 'egaming'];
 var thing = things[Math.floor(Math.random()*things.length)];
-document.getElementById("promote").src = thing;
 if(thing == "lvlup") {
 	document.getElementById("promote").src = "https://i.imgur.com/N885UnZ.png";
 	document.getElementById("promotelink").href = "https://lvlup.pro";
