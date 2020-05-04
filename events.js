@@ -3,7 +3,7 @@ const {
     con
 } = require('./index')
 const Discord = require('discord.js')
-const webhook = new Discord.WebhookClient('xx', 'xx')
+const webhook = new Discord.WebhookClient('xxxx', 'xxxx')
 
 client.on('ready', () => {
     async function premiumController() {
