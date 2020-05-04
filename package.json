@@ -1,0 +1,23 @@
+{
+  "name": "invite",
+  "version": "2.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "invite.ovh team",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "dblapi.js": "^2.4.0",
+    "discord.js": "^12.0.1",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "marko": "^4.19.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "showdown": "^1.9.1",
+    "string-sanitizer": "^1.1.1",
+    "valid-hex-color": "^1.1.1"
+  }
+}

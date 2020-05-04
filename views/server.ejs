@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="js/script.js" defer></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/now-ui-kit.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,800&display=swap" rel="stylesheet">
+	<meta property="og:site_name" content="Powered by invite.ovh"> <!-- Tutaj nie edytujesz info dla serwa -->
+	<meta property="og:title" content="<%= guildName %>"> <!-- Tutaj nazwa serwera -->
+	<meta property="og:image" content="<%= icon %>"> <!-- Logo Serwera -->
+	<meta property="og:description" content="⬤ <%= online %> Online ⭘ <%= users %> Razem"> <!-- To dla premium, jeżeli serwer nie ma premium to tu opis -->
+	<meta name="theme-color" content="<%= embed_color %>"> <!-- Kolorek serwera, do zmiany dla premium -->
+    <title><%= guildName %></title> <!-- Nazwa serwera here -->
+    <% if(auto_forwarding == 1) { %>
+    <meta HTTP-EQUIV="Refresh" CONTENT="1;URL=<%= link %>">
+    <% } %>
+    <script data-ad-client="ca-pub-5097276214734051" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <meta name="keywords" content="discord shortening custom url invite gg alias short discordapp edit vanity link invite.ovh invite ovh" />
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-transparent">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Strona Główna <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://help.invite.ovh/" target="_blank">Pomoc</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://bit.ly/3awWuFS">Regulamin i Polityka Prywatności</a>
+            </li>
+            <li class="nav-item">
+                <a href="//www.dmca.com/Protection/Status.aspx?ID=fded5792-fc94-4040-9945-ca87aeea92c8" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca-badge-w200-5x1-02.png?ID=fded5792-fc94-4040-9945-ca87aeea92c8"  alt="DMCA.com Protection Status" /></a>
+            </li>
+        </ul>
+        <a href="https://top.gg/bot/666628389309775873" class="btn btn-outline-secondary my-2 my-sm-0 btn-round btn-sm">Dodaj bota</a>
+    </div>
+</nav>
+<% if(db.type == 'color' && premium == 1) { %>
+	<div class="heading text-center" style="background: <%= color %>;">
+<% } else if (db.type == 'img' && premium == 1) { %>
+	<div class="headingpre text-center" style="background-image: url(<%= db.img %>);">
+<% } else { %>
+	<div class="heading text-center" style="background: #23272A;">
+<% } %>
+
+    <% if(icon) { %> 
+	    <img src="<%= icon %>" width="300" height="300" class="icon" style="box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);">
+    <% } else { %> 
+        <img src="/img/deafult.png" width="300" height="300" class="icon" style="box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);">
+    <% } %> 
+    <h1 class="display-5 title"><%= guildName %></h1><!-- Nazwa Serwera -->
+
+    <% if(premium == 1) { %> 
+    <span class="badge badge-warning">Premium</span><br /><br /><!-- Jeżeli serwer premium -->
+    <% } %> 
+
+    <p class="subtitle"><%- opis %></p> <!-- Opis serwera -->
+	<div class="badge badge-success text-wrap" style="width: 6rem;">
+		Online: <br /><%= online %>
+	</div>
+    <div class="badge badge-danger text-wrap" style="width: 6rem;">
+		Razem: <br /><%= users %>
+	</div></big><br />
+    <a class="btn btn-primary btn-lg" href="<%= link %>" role="button">Dołącz teraz</a> <!-- Link do serwa -->
+
+    <% if(premium != 1) { %>
+    <br /><br />
+    	<a href="" id="promotelink"><img src="" id="promote"></a>
+    <% } %>
+    <br /><br />Jeżeli serwer łamie nasz <a href="https://bit.ly/3awWuFS">regulamin</a> zgłoś go na naszym <a href="https://invite.ovh/support">discordzie</a>.<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</div>
+<div class="features">
+    <div class="title">Co da ci spersonalizowany link?</div>
+    <div class="cards">
+        <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Popularność</h5>
+            <p class="card-text">Twoje zaproszenie będzie łatwiejsze do zapamiętania dzięki czemu zyskasz na popularności. Dlatego użyj nas!</p>
+        </div>
+    </div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Reklama</h5>
+                <p class="card-text">Po stworzeniu zaproszenia, automatycznie zostanie wysłana reklama twojego serwera na naszym discordzie!</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="statistics">
+    <div class="cards">
+        <div class="card statistic" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Serwery</h5>
+                <h1 style="font-weight: bold !important">300+</h1>
+            </div>
+        </div>
+        <div class="card statistic" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Użytkownicy</h5>
+                <h1 style="font-weight: bold !important">150,000+</h1>
+            </div>
+        </div>
+        <div class="card statistic" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Kanały</h5>
+                <h1 style="font-weight: bold !important">3,000+</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="start">
+    <div class="card">
+        <div class="card-body">
+            <div class="title">Dodaj bota już teraz!</div>
+            <div class="subtitle">I zdobądź kolejnych użytkowników!</div>
+            <br />
+            <a class="btn btn-primary btn-lg" href="https://top.gg/bot/666628389309775873" role="button">Dodaj bota</a>
+        </div><br />
+    </div>
+</div>
+<div class="footer">
+    Created by <a href="https://kryty.xyz">krytyYT</a> from <a href="https://github.com/NourEldienHE/Discord-bot-website-template">this</a> template.
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="js/now-ui-kit.min.js"></script>
+<script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
+</body>
+</html>

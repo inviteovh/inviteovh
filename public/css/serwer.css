@@ -1,0 +1,129 @@
+body{
+	margin: 0;
+	padding: 0;
+	background: rgb(4,0,255);
+	background: linear-gradient(141deg, rgba(4,0,255,1) 3%, rgba(255,0,0,1) 100%);
+}
+
+.serversite{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 100%;
+	height: 500px;
+	background: #2d3436;
+}
+
+.servericon{
+	position: absolute;
+	box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+	top: 50%;
+	left: 20%;
+	transform: translate(-50%,-50%);
+}
+
+.serverdesc{
+	position: absolute;
+	top: 50%;
+	left: 45%;
+	transform: translate(-50%,-50%);
+	height: 250px;
+	width: 500px;
+	word-wrap: break-word;
+	text-decoration: none;
+	font-size: 20px;
+	font-family: "arial black";
+	color: white;
+}
+
+.buttons{
+	position: absolute;
+	top: 25%;
+	left: 60%;
+	height: 300px;
+	width: 460px;
+}
+
+.textonline{
+	position: absolute;
+	text-decoration: none;
+	font-size: 25px;
+	font-family: "arial black";
+	color: green;
+	top: 8%;
+	left: 5%;
+}
+
+.textonlinenum{
+	position: absolute;
+	text-decoration: none;
+	font-size: 25px;
+	font-family: "arial black";
+	color: white;
+	top: 8%;
+	left: 27%;
+}
+
+.textall{
+	position: absolute;
+	text-decoration: none;
+	font-size: 25px;
+	font-family: "arial black";
+	color: red;
+	top: 8%;
+	left: 60%;
+}
+
+.textallnum{
+	position: absolute;
+	text-decoration: none;
+	font-size: 25px;
+	font-family: "arial black";
+	color: white;
+	top: 8%;
+	left: 83%;
+}
+
+.premiuminfo{
+	position: absolute;
+	top: 30%;
+	left: 28%;
+}
+
+.btn{
+  position: relative;
+  display: block;
+  color: white;
+  font-size: 14px;
+  font-family: "arial black";
+  text-decoration: none;
+  border: 2px solid #ff7675;
+  padding: 14px 30px;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 1s all ease;
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.btn::before{
+  background: #ff7675;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: -1;
+  transition: all 0.6s ease;
+}
+
+.btn4::before{
+  width: 100%;
+  height: 0%;
+  transform: translate(-50%,-50%) rotate(-45deg);
+}
+.btn4:hover::before{
+  height: 380%;
+}
