@@ -12,7 +12,7 @@ Source Code of invite.ovh bot!
 
 4. Have fun with bot!
 
-5. Go to https://localhost:1337 if you dont change port in config.
+5. Go to http://localhost:1337 if you dont change port in config.
 
 ### License
 
