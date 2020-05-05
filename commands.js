@@ -5,7 +5,9 @@ const validHex = require('valid-hex-color')
 const string = require('string-sanitizer')
 const ms = require('ms')
 const showdown = require('showdown')
-var converter = new showdown.Converter();
+const DBL = require("dblapi.js");
+const dbl = new DBL(config.dbltoken, client);
+const converter = new showdown.Converter();
 
 const webhook = new Discord.WebhookClient(config.newserversid, config.newserverstoken)
 const webhook2 = new Discord.WebhookClient(config.logsid, config.logstoken)
@@ -49,7 +51,7 @@ client.on('message', async message => {
                     const invite = await channel.createInvite({
                         maxAge: 0
                     });
-                    const sql1 = `SELECT guild_id FROM links WHERE router="${link}" OR alt_router="${alt_link}"`;
+                    const sql1 = `SELECT guild_id FROM links WHERE router=${link} OR alt_router=${alt_link}`;
 
                     con.query(sql1, async (err, result) => {
 
@@ -243,6 +245,7 @@ Jeżeli twój serwer nie posiada Premium nie zobaczysz zmian na swojej stronie.`
             .addField(':star: Auto przekierowanie', `**${prefix}setup auto-przekierowanie**`)
             .addField(':star: Typ tła strony', `**${prefix}setup typ <typ>**`)
             .addField(':star: Zdjęcie tła strony', `**${prefix}setup img <url>**`)
+            .addField(':star: Premium', `**Premium od dnia 5 maja jest __za darmo__!** Wystarczy że zagłosujesz na naszego bota na stronie __https://top.gg/bot/666628389309775873/vote__ i wpiszesz komendę */premium*! Premium posiada wszystki funkcje z :star: powyżej!`)
             .addField('Ostrzeżenie', `Pamiętaj, aby nie dodawać do linku **spacji, "--", ".", "@"** i innych znaków specjalnych gdyż zostanę one usunięte!`)
             .addField('Tutorial', `Nie wiesz jak stworzyć swoje zaproszenie? Wejdź na naszą stronę pomocy! https://help.invite.ovh/`)
             .addField('Podoba ci się nasz bot?', `Oddaj na niego swój głos! Głosy możesz dawać co 12 godzin! https://top.gg/bot/666628389309775873/vote`)
@@ -394,7 +397,7 @@ Jeżeli twój serwer nie posiada Premium nie zobaczysz zmian na swojej stronie.`
         )
     }
     if(command == 'update') {
-        if(!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('Odmowa dostępu')
+        if(!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('Musisz posiadać uprawnienia administratora aby użyć tej komendy!')
         if(args[0] == 'link') {
                 const sql1 = `SELECT * FROM links WHERE guild_id=${message.guild.id}`
                 con.query(sql1, async (err, results) => {
@@ -467,7 +470,7 @@ Jeżeli twój serwer nie posiada Premium nie zobaczysz zmian na swojej stronie.`
                 }
                 message.channel.send('Pomyślnie zaaktualizowano link do Discorda. ' + invite.url)
             })
-            })
+        })
 
         } else {
             message.channel.send(
@@ -514,5 +517,72 @@ Jeżeli twój serwer nie posiada Premium nie zobaczysz zmian na swojej stronie.`
     if(command == 'link') {
         message.channel.send(`Support serwer: https://discord.gg/nmuRxxN\n\nLink do dodania bota: https://discordapp.com/oauth2/authorize?client_id=666628389309775873&scope=bot&permissions=1`)
     }
+    if(command == 'premium') {
+        if(!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('Musisz posiadać uprawnienia administratora aby użyć tej komendy!')
+        con.query(`SELECT * FROM links WHERE guild_id=${message.guild.id}`, async (err, results) => {
+            if(err) return message.channel.send('OOPS! Coś poszło nie tak!'), console.log(err)
+            if(!results[0]) {
+                message.channel.send(
+                    new Discord.MessageEmbed()
+                    .setColor('RED')
+                    .setTitle(':star: Premium :star:')
+                    .setDescription('Serwer nie posiada swojej strony! Stwórz ją komendą `/setup`')
+                    .setThumbnail(client.user.displayAvatarURL())
+        
+                )
+                return;
+            }
+            if(results[0].premium != 1) {
+                dbl.hasVoted(message.author.id).then(voted => {
+                    if (voted) {
+                        const endms = ms("12h")
+                        if(!endms) return message.channel.send('Podano zły czas')
+                        console.log(endms)
+                        const pend = message.createdTimestamp + endms
+                        console.log(pend)
+                        const sql2 = `UPDATE links SET premium="1", premium_added="${message.createdTimestamp}", premium_ended="${pend}" WHERE guild_id=${message.guild.id}`
+                        
+                        con.query(sql2, async (err) => {
+                            if(err) return message.channel.send('Wystąpił błąd'), console.log(err)
+                            message.channel.send(
+                                new Discord.MessageEmbed()
+                                .setColor('RED')
+                                .setTitle(':star: Premium :star:')
+                                .setDescription('Pomyślnie nadano premium na ten serwer! Użyj tej komendy za ok. 12h aby utrzymać status premium!')
+                                .setThumbnail(client.user.displayAvatarURL())
+                            )
+                        })
+                    } else {
+                        message.channel.send(
+                            new Discord.MessageEmbed()
+                            .setColor('RED')
+                            .setTitle(':star: Premium :star:')
+                            .setDescription('Nie zagłosowałeś na nasz serwer! ')
+                            .setThumbnail(client.user.displayAvatarURL())
+                        )
+                    }
+                    return
+                });
+            } else {
+                message.channel.send(
+                    new Discord.MessageEmbed()
+                    .setColor('RED')
+                    .setTitle(':star: Premium :star:')
+                    .setDescription('Posiadasz już premium! Premium można odbierać co 12 godzin!')
+                    .setThumbnail(client.user.displayAvatarURL())
+        
+                )
+                return
+            }
+        });
+        //message.channel.send(
+        //    new Discord.MessageEmbed()
+        //    .setColor('RED')
+        //    .setTitle(':star: Premium :star:')
+        //    .addField('Co daje premium?', `Wszystkie funkcje oznaczone gwiazdką (:star:).`)
+        //    .addField('Jak zdobyć?', `Zagłosuj na naszego bota na stronie top.gg (https://top.gg/bot/666628389309775873/vote), wpisz tą komendę i zostanie nadane ci premium na 12 godzin, po 12 godzinach wystarczy zagłosować na nas jeszcze raz i wpisać tą komendę!`)
+        //    .setThumbnail(client.user.displayAvatarURL())
 
+        //)
+    }
 });
