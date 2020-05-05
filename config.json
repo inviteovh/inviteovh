@@ -1,1 +1,16 @@
 
+{
+    "token": "xxx",
+    "prefix": "/",
+    "www": "https://invite.ovh",
+    "mysqlpasswd": "xxx",
+    "mysqluser": "xxx",
+    "mysqlhost": "localhost",
+    "mysqldb": "xxx",
+    "dbltoken": "xxx",
+    "newserversid": "xxx",
+    "newserverstoken": "xxx",
+    "logsid": "xxx",
+    "logstoken": "xxx",
+    "expressport": "1337"
+}
