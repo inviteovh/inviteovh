@@ -1,15 +1,1 @@
-{
-    "token": "NjY2NjI4Mzg5MzA5Nzc1ODcz.Xnb_sQ.1N3Yom1TKEMm0xdhLbtQuxhJJNI",
-    "prefix": "/",
-    "www": "https://invite.ovh",
-    "mysqlpasswd": "admin12312300",
-    "mysqluser": "admin",
-    "mysqlhost": "localhost",
-    "mysqldb": "invite",
-    "dbltoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NjYyODM4OTMwOTc3NTg3MyIsImJvdCI6dHJ1ZSwiaWF0IjoxNTg1ODMzOTA5fQ.yT34AjxhxHXU8zrDzVafLH9imnECFU8uo35s1PQOKXk",
-    "newserversid": "685173657265373322",
-    "newserverstoken": "f4P8jzKQ41xCU__y5wzqhZV9lj3xFE9Gz3cFO5k8VzPDphF944sgTPhdPbqwBr-JnWnA",
-    "logsid": "706749644578750505",
-    "logstoken": "9h6CvirYirGSz7SASjmYYb_iWXTIYc41Mim6QDJ5cVLISmjy9lNO-4dd83bWYpPi5DUV",
-    "expressport": "1234"
-}
+
